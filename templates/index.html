@@ -4,8 +4,8 @@
 
 <head>
     <title>HNG - Airtime Transfer</title>
-    <link rel="stylesheet" type="text/css" href="{% url 'style.css'%}">
-    <link rel="shortcut icon" type="image/icon" href="{% url 'images/favicon.png'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+    <link rel="shortcut icon" type="image/icon" href="{% static 'images/favicon.png'%}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,7 +15,7 @@
     <div>
         <div class="container">
             <div class="img-container">
-                <a href="/"><img alt="piggy" src="{%url'images/piggy.png'%}" width="250px"></a>
+                <a href="/"><img alt="piggy" src="{% static 'images/piggy.png' %}" width="250px"></a>
             </div>
             <div class="form-container">
                 <form action="" method="POST">
