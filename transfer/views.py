@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from .models import Details
 from .ransfer import send
@@ -22,13 +23,19 @@ def index(request):
         zipped_file = list(zip(phones, providers, amounts))
         for value in zipped_file:
             data = {
-                "Code": "",
+                "Code": value[1].lower(),
                 "Amount": value[2],
                 "PhoneNumber": value[0],
-                "SecretKey": ""
-
+                "SecretKey": "hfucj5jatq8h"
             }
             logger.warning("Sending " + value[2] + " to PhoneNumber:" + value[0])
-            send(data)
+            response = send(data)
+            response = response.decode("utf8")
+            data = json.loads(response)
+                
+            if data["ResponseCode"] == "200":
+                context = {"success": f"Sucessfull sent to {value[0]}"}
+            else:
+                context = {"error": f"Error sending to {value[0]}"}
 
     return render(request, "index.html", context)

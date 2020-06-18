@@ -18,7 +18,12 @@
                 <a href="/"><img alt="piggy" src="{% static 'images/piggy.png' %}" width="250px"></a>
             </div>
             <div class="form-container">
-
+                {%if success%}
+                <h5 style="color:greenyellow">{{message}}</h5>
+                {%endif%}
+                {%if error%}
+                <h5 style="color:red">{{error}}</h5>
+                {%endif%}
                 <form action="" method="POST">
                     {%csrf_token%}
                     <label for="fullname">Phone Number</label>
@@ -29,6 +34,7 @@
                     <div class="del">
                         <input id="fullname" name="phone" placeholder="+234 " type="text">
                         <select id="provider" name="provider">
+                            <option> Select a Provider </option>
                             <option> MTN </option>
                             <option> Etisalat </option>
                             <option> Glo </option>
