@@ -1,28 +1,49 @@
-<form action="{%url 'index'%}" method="POST">
-    {%csrf_token%}
-    <div name='some1'>
-        <input type="tel" name="phone_0">
-        <select name="provider_0">
-            <option>Select provider</option>
-            <option>MTN</option>
-            <option>GLO</option>
-            <option>AIRTEL</option>
-            <option>ETI</option>
-        </select>
-        <input type="number" name="amount_0">
-        
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HNG - Airtime Transfer</title>
+    <link rel="stylesheet" type="text/css" href="{% url 'style.css'%}">
+    <link rel="shortcut icon" type="image/icon" href="{% url 'images/favicon.png'%}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <div>
+        <div class="container">
+            <div class="img-container">
+                <a href="/"><img alt="piggy" src="{%url'images/piggy.png'%}" width="250px"></a>
+            </div>
+            <div class="form-container">
+                <form action="" method="POST">
+                    <label for="fullname">Phone Number</label>
+                    <label for="email">Provider</label>
+                    <label for="tel">Amount</label>
+                    <br>
+                <div class="del">
+                    <input id="fullname"name="phone" placeholder="+234 " type="text">                    
+                    <select id="provider" name="provider">
+                        <option> MTN </option>
+                        <option> Etisalat </option>
+                        <option> Glo </option>
+                        <option> Airtel </option>
+                    </select>
+                    <input id="amount" name="amount" placeholder="Amount" type="number">
+                    <div class="clear"></div>
+                    <div style="text-align: right; ">
+                        <button style="width:30%"> SEND </button>
+                    </div>
+                </div>
+                </form>
+                <div class="clear"></div>
+            </div>
+            
+
+        </div>
     </div>
-    <div name='some2'>
-        <input type="tel" name="phone_1">
-        <select id="provide" name="provider_1" >
-            <option>Select a provider</option>
-            <option>MTN</option>
-            <option>GLO</option>
-            <option>AIRTEL</option>
-            <option>ETI</option>
-        </select>
-        <input type="number" name="amount_1">
-        
-    </div>
-    <input type="submit" value="go" name="tde">
-</form>
+</body>
+
+</html>
