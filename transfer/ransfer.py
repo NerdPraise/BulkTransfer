@@ -9,7 +9,5 @@ def send(payload):
         "Authorization": "Bearer uvjqzm5xl6bw"
     }
 
-    
-
-    response = requests.request("POST", url, headers=headers, data = payload)
+    response = requests.request("POST", url, headers=headers, data=payload)
     return response.text.encode('utf8')

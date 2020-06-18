@@ -1,10 +1,14 @@
 import json
+import os
+from dotenv import load_dotenv
 from django.shortcuts import render
 from .models import Details
 from .ransfer import send
 import logging
 
 logger = logging.getLogger(__name__)
+load_dotenv()
+
 
 def index(request):
     context = {}
@@ -26,7 +30,7 @@ def index(request):
                 "Code": value[1].lower(),
                 "Amount": value[2],
                 "PhoneNumber": value[0],
-                "SecretKey": "hfucj5jatq8h"
+                "SecretKey": os.environ.get('SECRET_KEY')
             }
             logger.warning("Sending " + value[2] + " to PhoneNumber:" + value[0])
             response = send(data)
@@ -34,7 +38,7 @@ def index(request):
             data = json.loads(response)
                 
             if data["ResponseCode"] == "200":
-                context = {"success": f"Sucessfull sent to {value[0]}"}
+                context = {"success": f"Successfully sent to {value[0]}"}
             else:
                 context = {"error": f"Error sending to {value[0]}"}
 
