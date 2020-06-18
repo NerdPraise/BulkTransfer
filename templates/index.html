@@ -1,8 +1,28 @@
 <form action="{%url 'index'%}" method="POST">
     {%csrf_token%}
-    <input type="text"   name="te">
-    <input type="number" name="ter">
-    <input type="date" name="tee">
-    <input type="text" name="tew">
+    <div name='some1'>
+        <input type="tel" name="phone_0">
+        <select name="provider_0">
+            <option>Select provider</option>
+            <option>MTN</option>
+            <option>GLO</option>
+            <option>AIRTEL</option>
+            <option>ETI</option>
+        </select>
+        <input type="number" name="amount_0">
+        
+    </div>
+    <div name='some2'>
+        <input type="tel" name="phone_1">
+        <select name="provider_1" >
+            <option>Select provider</option>
+            <option>MTN</option>
+            <option>GLO</option>
+            <option>AIRTEL</option>
+            <option>ETI</option>
+        </select>
+        <input type="number" name="amount_1">
+        
+    </div>
     <input type="submit" value="go" name="tde">
 </form>

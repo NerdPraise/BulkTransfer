@@ -1,12 +1,31 @@
 from django.shortcuts import render
-import bulktransfer
+from .models import Details
+from .ransfer import send
 
 
 # Create your views here.
 def index(request):
     context = {}
     if request.method == "POST":
+        amounts, phones, providers = [], [], []
         for key, value in request.POST.items():
-            print(key, value)
+    
+            key = key.split("_")[0]
+            if key == "amount" :
+                amounts.append(value)
+            elif key == "phone":
+                phones.append(value)
+            elif key == 'provider':
+                providers.append(value)
+        zipped_file = list(zip(phones, providers, amounts))
+        for value in zipped_file:
+            data = {
+                "Code": "",
+                "Amount": value[2],
+                "PhoneNumber": value[0],
+                "SecretKey":""
+
+            }
+            send(data)
             
     return render(request, "index.html", context)
