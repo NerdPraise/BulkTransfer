@@ -18,32 +18,39 @@
                 <a href="/"><img alt="piggy" src="{% static 'images/piggy.png' %}" width="250px"></a>
             </div>
             <div class="form-container">
+
                 <form action="" method="POST">
+                    {%csrf_token%}
                     <label for="fullname">Phone Number</label>
                     <label for="email">Provider</label>
                     <label for="tel">Amount</label>
+                    <span class="add" style="color: blue;cursor: pointer; font-size: 20px; font-weight:bold">+</span>
                     <br>
-                <div class="del">
-                    <input id="fullname"name="phone" placeholder="+234 " type="text">                    
-                    <select id="provider" name="provider">
-                        <option> MTN </option>
-                        <option> Etisalat </option>
-                        <option> Glo </option>
-                        <option> Airtel </option>
-                    </select>
-                    <input id="amount" name="amount" placeholder="Amount" type="number">
-                    <div class="clear"></div>
+                    <div class="del">
+                        <input id="fullname" name="phone" placeholder="+234 " type="text">
+                        <select id="provider" name="provider">
+                            <option> MTN </option>
+                            <option> Etisalat </option>
+                            <option> Glo </option>
+                            <option> Airtel </option>
+                        </select>
+                        <input id="amount" name="amount" placeholder="Amount" type="number">
+                        <div class="clear"></div>
+                    </div>
                     <div style="text-align: right; ">
                         <button style="width:30%"> SEND </button>
                     </div>
-                </div>
                 </form>
+
                 <div class="clear"></div>
             </div>
-            
+
 
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{%static 'js/script.js'%}"></script>
+
 </body>
 
 </html>
