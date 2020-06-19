@@ -1,7 +1,7 @@
 
 var i = 1;
 $('.add').click(function () {
-  var field = '<hr><input id="phone" name="phone_' + i + '" placeholder="+234 " type="text"><select id="provider" name="provider_' + i + '"><option> Select a Provider </option><option> MTN </option><option> Etisalat </option><option> Glo </option><option> Airtel </option></select><input id="amount" name="amount_' + i + '" placeholder="Amount" type="number"><div class="clear"></div>';
+  var field = '<hr><input id="phone" name="phone_' + i + '" placeholder="+234 " type="text" required><select id="provider" name="provider_' + i + '" required><option> Select a Provider </option><option> MTN </option><option> Etisalat </option><option> Glo </option><option> Airtel </option></select><input id="amount" name="amount_' + i + '" placeholder="Amount" type="number" required><div class="clear"></div>';
   $('.del').append(field);
   i = i + 1;
 })
@@ -84,8 +84,10 @@ $(".btnss").click(function() {
     type: "POST",
     data: formdata,
     success: function (data) {
-        if (data.error) {
-          alert(data.error)
+        if (data.fail) {
+          for (i of data.fail)
+            alertbox.show(i);
+            $("form")[0].reset()
         }
         if (data.success) {
             for (i of data.success)
