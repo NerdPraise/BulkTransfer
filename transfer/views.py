@@ -1,4 +1,6 @@
 import json
+import os
+from dotenv import load_dotenv
 from django.shortcuts import render
 from .models import Details
 from .ransfer import send
@@ -7,12 +9,15 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 
+load_dotenv()
+
+
 logger = logging.getLogger(__name__)
 @csrf_exempt
 def index(request):
     context = {}
     success, fail = [], []
-    if request.method == "POST":
+    if request.method == "POST" and  request.POST.items() == None:
         amounts, phones, providers = [], [], []
         for key, value in request.POST.items():
 
@@ -30,7 +35,7 @@ def index(request):
                 "Code": value[1].lower(),
                 "Amount": value[2],
                 "PhoneNumber": value[0],
-                "SecretKey": "hfucj5jatq8h"
+                "SecretKey": os.environ.get('SECRET_KEY')
             }
             logger.warning("Sending " + value[2] + " to PhoneNumber:" + value[0])
             response = send(data)
