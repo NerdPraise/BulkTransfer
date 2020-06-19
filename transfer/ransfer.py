@@ -1,8 +1,7 @@
 import requests
 
-
 def send(payload):
-    url = "https://app.wallet.africa/bills/airtime/providers"
+    url = "https://api.wallets.africa/bills/airtime/purchase"
 
     headers = {
         'Content-Type': 'application/json',
@@ -11,3 +10,4 @@ def send(payload):
 
     response = requests.request("POST", url, headers=headers, data=payload)
     return response.text.encode('utf8')
+

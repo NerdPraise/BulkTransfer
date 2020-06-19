@@ -53,8 +53,9 @@ def index(request):
                 
                 if "ResponseCode" in data.keys() and data["ResponseCode"] == "200":
                     success.append(f"Successfuly sent to {value[0]} ")
+                elif "ResponseCode" in data.keys() and data["ResponseCode"] == "400":
+                    fail.append(f"Not enough balance to send to {value[0]}")
                 else:
-                    
                     fail.append(f"Failed to send to {value[0]}")
 
             data = {
@@ -70,3 +71,5 @@ def index(request):
             return JsonResponse(data)
 
     return render(request, "index.html", context)
+    
+    
