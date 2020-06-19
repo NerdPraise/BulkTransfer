@@ -17,10 +17,12 @@ logger = logging.getLogger(__name__)
 def index(request):
     context = {}
     success, fail = [], []
-    if request.method == "POST" and  request.POST.items() == None:
+    print( request.POST.items)
+    if request.method == "POST":
+        
         amounts, phones, providers = [], [], []
         for key, value in request.POST.items():
-
+            
             key = key.split("_")[0]
             if key == "amount":
                 amounts.append(value)

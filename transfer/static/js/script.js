@@ -81,18 +81,18 @@ $(".btnss").click(function() {
   }
   $.ajax({
     url: form_url,
-        type: "POST",
-        data: formdata,
-        success: function (data) {
-            if (data.error) {
-                alert(data.error)
-            }
-            if (data.success) {
-              for (i of data.success)
-                alertbox.show(i);
-                $("form")[0].reset()
-            }
-        },
+    type: "POST",
+    data: formdata,
+    success: function (data) {
+        if (data.error) {
+          alert(data.error)
+        }
+        if (data.success) {
+            for (i of data.success)
+            alertbox.show(i);
+            $("form")[0].reset()
+        }
+      },
   })
 
 })
