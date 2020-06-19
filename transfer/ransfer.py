@@ -2,11 +2,11 @@ import requests
 
 
 def send(payload):
-    url = "https://sandbox.wallets.africa/bills/airtime/providers"
+    url = "https://app.wallet.africa/bills/airtime/providers"
 
     headers = {
         'Content-Type': 'application/json',
-        "Authorization": "Bearer uvjqzm5xl6bw"
+        "Authorization": "Bearer knqeabg6upuv"
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)

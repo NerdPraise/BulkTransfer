@@ -27,7 +27,10 @@ def index(request):
             if key == "amount":
                 amounts.append(value)
             elif key == "phone":
-                phones.append(value)
+                if len(value) == 13:
+                    phones.append(value)
+                else:
+                    fail.append("Input correct phone number")
             elif key == 'provider':
                 providers.append(value)
             print(providers)
