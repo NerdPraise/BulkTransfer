@@ -20,5 +20,6 @@ from transfer import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="index"),
-    path("bulk", views.bulk_transfer, name="bulk")
+    path("bulk", views.bulk_transfer, name="bulk"),
+    path("send_bulk", views.bulk_send, name="send_bulk"),
 ]

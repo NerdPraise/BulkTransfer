@@ -104,3 +104,35 @@ $(".sub").click(function() {
   $(".field_" + tot).remove()
 
 })
+
+
+
+$(".send").click(function() {
+  event.preventDefault()
+  let form_url = $("#form").attr("form-data-url")
+  formdata = {}
+  formdata["phone"] = $('textarea[name=phone]').val()
+  formdata["amount"] = $('input[name=amount]').val()
+  formdata["provider"] = $('select[name=provider]').val()
+
+  $.ajax({
+    url: form_url,
+    type: "POST",
+    data: formdata,
+    success: function (data) {
+        if (data.fail) {
+          for (i of data.fail)
+            alertbox.show(i);
+            $("form")[0].reset()
+
+
+        }
+        if (data.success) {
+            for (i of data.success)
+            alertbox.show(i);
+            $("form")[0].reset()
+        }
+      },
+  })
+
+})

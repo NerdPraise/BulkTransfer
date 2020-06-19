@@ -24,8 +24,8 @@
             
 
             <div class="form-container">
-                <h5 style="color:blue; margin: 0; padding: 0;">For same amount</h5>
-                <form form-data-url="{%url 'index'%}" method="POST">
+                <h5 style="color:blue; margin: 0; padding: 0;">For same amount and provider</h5>
+                <form id="form" form-data-url="{%url 'send_bulk'%}" method="POST">
                     {%csrf_token%}
                     <label for="fullname">Provider</label>
                     <label for="email">Amount</label>
@@ -33,21 +33,21 @@
                     
                     <br>
                     <div class="del">
-                        <select id="provider" name="provider_0" required>
+                        <select id="provider" name="provider" required>
                             <option> Select a Provider </option>
                             <option> MTN </option>
                             <option> Etisalat </option>
                             <option> Glo </option>
                             <option> Airtel </option>
                         </select>
-                        <input id="amount" name="amount_0" placeholder="Amount" type="number" required>
-                        <textarea id="phone" name="phone_0" rows="10" cols="20" placeholder="Multiple numbers seperated by comma" type="tel"></textarea>
+                        <input id="amount" name="amount" placeholder="Amount" type="number" required>
+                        <textarea id="phone" name="phone" rows="10" cols="20" placeholder="Multiple numbers seperated by comma" type="tel"></textarea>
                         <div class="clear"></div>
                         
                     </div>
                     
                     <div style="text-align: right; ">
-                        <button style="width:30%" class="btnss"> SEND </button>
+                        <button style="width:30%" class="send"> SEND </button>
                     </div>
                     
                 </form>
@@ -55,7 +55,9 @@
                 <div class="clear"></div>
             </div>
 
-
+            <div class="alert-message-container">
+            </div>
+            <div id="alert-area" class="alert-area"></div>
         </div>
     </div>
 

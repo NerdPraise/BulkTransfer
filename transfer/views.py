@@ -13,9 +13,9 @@ load_dotenv()
 
 
 logger = logging.getLogger(__name__)
+
 @csrf_exempt
 def index(request):
-    context = {}
     success, fail = [], []
     if request.method == "POST":
         
@@ -45,7 +45,6 @@ def index(request):
                 }
                 logger.warning("Sending " + value[2] + " to PhoneNumber:" + value[0])
                 response = send(data)
-                print(response)
                 response = response.decode("utf8")
                 data = json.loads(response)
                 
@@ -68,8 +67,40 @@ def index(request):
             }
             return JsonResponse(data)
 
-    return render(request, "index.html", context)
+    return render(request, "index.html")
     
     
 def bulk_transfer(request):
     return render(request, "bulk.html")
+
+@csrf_exempt
+def bulk_send(request):
+    success, fail = [], []
+    if request.method == "POST" :
+        amount = request.POST.get("amount") 
+        provider = request.POST.get("provider")
+        phones = request.POST.get("phone")
+        phones = phones.split(",")
+        for phone in phones:
+            data = {
+                    "Code": provider.lower(),
+                    "Amount": int(amount),
+                    "PhoneNumber": phone,
+                    "SecretKey": os.environ.get('SECRET_KEY')
+            }
+            response = send(data)
+            response = response.decode("utf8")
+            data = json.loads(response)
+                
+            if "ResponseCode" in data.keys() and data["ResponseCode"] == "200":
+                success.append(f"Successfuly sent to {phone} ")
+            elif "ResponseCode" in data.keys() and data["ResponseCode"] == "400":
+                fail.append(f"Not enough balance to send to {phone}")
+            else:
+                fail.append(f"Failed to send to {phone}")
+
+        data = {
+                "success": success,
+                "fail":fail
+            }
+        return JsonResponse(data)
