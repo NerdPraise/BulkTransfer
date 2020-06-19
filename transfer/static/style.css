@@ -40,7 +40,7 @@ header {
 
 input, select, textarea {
     width: 31%;
-    border: 0px;
+    border: 1px solid #ccc;
     border-radius: .25rem;
     box-sizing: border-box;
     padding:16px;
@@ -51,6 +51,7 @@ input, select, textarea {
     background-color: #edf2f7;
     color:#1a202c;
     float: left;
+
 }
 
 input, select {
