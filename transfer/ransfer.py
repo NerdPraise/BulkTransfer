@@ -1,13 +1,13 @@
 import requests
 
-
 def send(payload):
-    url = "https://sandbox.wallets.africa/bills/airtime/providers"
+    url = "https://api.wallets.africa/bills/airtime/purchase"
 
     headers = {
         'Content-Type': 'application/json',
-        "Authorization": "Bearer uvjqzm5xl6bw"
+        "Authorization": "Bearer knqeabg6upuv"
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
     return response.text.encode('utf8')
+
