@@ -3,11 +3,15 @@ from django.shortcuts import render
 from .models import Details
 from .ransfer import send
 import logging
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 
 logger = logging.getLogger(__name__)
-
+@csrf_exempt
 def index(request):
     context = {}
+    success, fail = [], []
     if request.method == "POST":
         amounts, phones, providers = [], [], []
         for key, value in request.POST.items():
@@ -32,10 +36,16 @@ def index(request):
             response = send(data)
             response = response.decode("utf8")
             data = json.loads(response)
-                
+            
             if data["ResponseCode"] == "200":
-                context = {"success": f"Sucessfull sent to {value[0]}"}
+                success.append(f"Successfuly sent to {value[0]} ")
             else:
-                context = {"error": f"Error sending to {value[0]}"}
+                fail.append(f"Failed to send to {value[0]}")
+
+        data = {
+            "success": success,
+            "fail":fail
+        }
+        return JsonResponse(data)
 
     return render(request, "index.html", context)

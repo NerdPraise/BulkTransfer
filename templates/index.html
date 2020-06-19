@@ -15,7 +15,7 @@
     <div>
         <div class="container">
             <div class="img-container">
-                <a href="/"><img alt="piggy" src="{% static 'images/piggy.png' %}" width="250px"></a>
+                <a href="/"><img alt="piggy" src="{% static 'images/logo.png' %}" width="250px"></a>
             </div>
             <div class="form-container">
                 {%if success%}
@@ -24,34 +24,39 @@
                 {%if error%}
                 <h5 style="color:red">{{error}}</h5>
                 {%endif%}
-                <form action="" method="POST">
+                <form form-data-url="{%url 'index'%}" method="POST">
                     {%csrf_token%}
                     <label for="fullname">Phone Number</label>
                     <label for="email">Provider</label>
                     <label for="tel">Amount</label>
-                    <span class="add" style="color: blue;cursor: pointer; font-size: 20px; font-weight:bold">+</span>
+                    <span class="add" style="color: #00aeff;cursor: pointer; font-size: 35px; font-weight:900">+</span>
                     <br>
                     <div class="del">
-                        <input id="fullname" name="phone" placeholder="+234 " type="text">
-                        <select id="provider" name="provider">
+                        <input id="phone" name="phone_0" placeholder="+234 Phone" type="text">
+                        <select id="provider" name="provider_0">
                             <option> Select a Provider </option>
                             <option> MTN </option>
                             <option> Etisalat </option>
                             <option> Glo </option>
                             <option> Airtel </option>
                         </select>
-                        <input id="amount" name="amount" placeholder="Amount" type="number">
+                        <input id="amount" name="amount_0" placeholder="Amount" type="number">
                         <div class="clear"></div>
+                        
                     </div>
                     <div style="text-align: right; ">
-                        <button style="width:30%"> SEND </button>
+                        <button style="width:30%" class="btnss"> SEND </button>
                     </div>
+                    <input class="reser" type="reset" hidden>
                 </form>
 
                 <div class="clear"></div>
             </div>
 
-
+            <div class="alert-message-container">
+                <p><input id="alertMessageBox" class="alert-message-box" /></p>
+            </div>
+            <div id="alert-area" class="alert-area"></div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
