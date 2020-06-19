@@ -71,3 +71,5 @@ def index(request):
     return render(request, "index.html", context)
     
     
+def bulk_transfer(request):
+    return render(request, "bulk.html")

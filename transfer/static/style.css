@@ -38,7 +38,7 @@ header {
    
 }
 
-input, select {
+input, select, textarea {
     width: 31%;
     border: 0px;
     border-radius: .25rem;
@@ -47,12 +47,15 @@ input, select {
     margin: 12px 12px 40px 2px;
     font-family: inherit;
     font-size: .875rem;
-    height:55px;
+    
     background-color: #edf2f7;
     color:#1a202c;
     float: left;
 }
 
+input, select {
+  height:55px;
+}
 
 label {
     float: left;
@@ -65,11 +68,11 @@ label {
 }
 
 .form-container {
-    background-color: #f6fcfd;
+    background-color: transparent;
     max-width:900px;
     padding: 35px;
     margin:10px auto;
-    background: url("images/body.png") no-repeat center fixed;
+    
     background-size: auto;
 }
 

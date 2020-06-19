@@ -17,19 +17,22 @@
             <div class="img-container">
                 <a href="/"><img alt="piggy" src="{% static 'images/logo.png' %}" width="250px"></a>
                 <div style="float: right; margin-right:15px;">
-                    <button class="btn" style="padding:10px 20px;" onclick="location.href='{%url 'bulk'%}'">Bulk</button>
+                    <button class="btn" style="padding:10px 20px;"
+                        onclick="location.href='{%url 'index'%}'">Single</button>
                 </div>
             </div>
+            
+
             <div class="form-container">
+                <h3 style="color:blue">For same amount</h3>
                 <form form-data-url="{%url 'index'%}" method="POST">
                     {%csrf_token%}
-                    <label for="fullname">Phone Number</label>
-                    <label for="email">Provider</label>
-                    <label for="tel">Amount</label>
+                    <label for="fullname">Provider</label>
+                    <label for="email">Amount</label>
+                    <label for="tel">Numbers</label>
                     <span class="add" style="color: #00aeff;cursor: pointer; font-size: 35px; font-weight:900">+</span>
                     <br>
                     <div class="del">
-                        <input id="phone" name="phone_0" placeholder="+234 Phone" type="tel" required>
                         <select id="provider" name="provider_0" required>
                             <option> Select a Provider </option>
                             <option> MTN </option>
@@ -38,6 +41,7 @@
                             <option> Airtel </option>
                         </select>
                         <input id="amount" name="amount_0" placeholder="Amount" type="number" required>
+                        <textarea id="phone" name="phone_0" rows="10" cols="20" placeholder="Multiple numbers seperated by comma" type="tel"></textarea>
                         <div class="clear"></div>
                         
                     </div>
@@ -51,15 +55,11 @@
                 <div class="clear"></div>
             </div>
 
-            <div class="alert-message-container">
-                <p><input id="alertMessageBox" class="alert-message-box" /></p>
-            </div>
-            <div id="alert-area" class="alert-area"></div>
+
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
     <script src="{%static 'js/script.js'%}"></script>
 
 </body>
-
-</html>
