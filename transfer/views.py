@@ -39,7 +39,9 @@ def index(request):
                 
             if data["ResponseCode"] == "200":
                 context = {"success": f"Successfully sent to {value[0]}"}
-            else:
-                context = {"error": f"Error sending to {value[0]}"}
+            elif data["ResponseCode"] == "400":
+                context = {"error": f"Not enough balance to send to {value[0]}"}
 
     return render(request, "index.html", context)
+    
+    
