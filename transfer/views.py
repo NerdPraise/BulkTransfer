@@ -27,21 +27,19 @@ def index(request):
             if key == "amount":
                 amounts.append(value)
             elif key == "phone":
-                if len(value) == 13:
+                if len(value) <= 13:
                     phones.append(value)
                 else:
                     fail.append("Input correct phone number")
             elif key == 'provider':
                 providers.append(value)
-            print(providers)
         logger.warning("Collecting values")
         zipped_file = list(zip(phones, providers, amounts))
-        print(zipped_file)
         if zipped_file:
             for value in zipped_file:
                 data = {
                     "Code": value[1].lower(),
-                    "Amount": value[2],
+                    "Amount": int(value[2]),
                     "PhoneNumber": value[0],
                     "SecretKey": os.environ.get('SECRET_KEY')
                 }

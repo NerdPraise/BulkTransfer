@@ -9,5 +9,6 @@ def send(payload):
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
+    print(response)
     return response.text.encode('utf8')
 

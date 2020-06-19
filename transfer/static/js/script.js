@@ -1,9 +1,7 @@
-
-var i = 1;
 $('.add').click(function () {
-  var field = '<hr><input id="phone" name="phone_' + i + '" placeholder="+234 " type="text" required><select id="provider" name="provider_' + i + '" required><option> Select a Provider </option><option> MTN </option><option> Etisalat </option><option> Glo </option><option> Airtel </option></select><input id="amount" name="amount_' + i + '" placeholder="Amount" type="number" required><div class="clear"></div>';
+  let i = (($("form input").length - 1) +  (($("form input").length - 1)/2))/3;
+  var field = '<hr><div class="field_' + i + '"><input id="phone" name="phone_' + i + '" placeholder="+234 " type="text" required><select id="provider" name="provider_' + i + '" required><option> Select a Provider </option><option> MTN </option><option> Etisalat </option><option> Glo </option><option> Airtel </option></select><input id="amount" name="amount_' + i + '" placeholder="Amount" type="number" required><div class="clear"></div></div>';
   $('.del').append(field);
-  i = i + 1;
 })
 
 var AlertBox = function(id, option) {
@@ -73,7 +71,7 @@ $(".btnss").click(function() {
   event.preventDefault()
   let form_url = $("#form").attr("form-data-url")
   formdata = {}
-  tot = (($("form input").length - 1) +  (($("form input").length - 1)/2))/3
+  let tot = (($("form input").length - 1) +  (($("form input").length - 1)/2))/3
   for (i=0; i<tot; i++){
     formdata["phone_"+ i] = $('input[name=phone_' + i +']').val()
     formdata["amount_"+ i] = $('input[name=amount_' + i +']').val()
@@ -96,5 +94,13 @@ $(".btnss").click(function() {
         }
       },
   })
+
+})
+
+
+$(".sub").click(function() {
+  let tot = (($("form input").length - 1) +  (($("form input").length - 1)/2))/3
+  tot = tot - 1
+  $(".field_" + tot).remove()
 
 })
