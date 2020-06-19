@@ -44,12 +44,14 @@ def index(request):
                 }
                 logger.warning("Sending " + value[2] + " to PhoneNumber:" + value[0])
                 response = send(data)
+                print(response)
                 response = response.decode("utf8")
                 data = json.loads(response)
                 
-                if data["ResponseCode"] == "200":
+                if "ResponseCode" in data.keys() and data["ResponseCode"] == "200":
                     success.append(f"Successfuly sent to {value[0]} ")
                 else:
+                    
                     fail.append(f"Failed to send to {value[0]}")
 
             data = {
